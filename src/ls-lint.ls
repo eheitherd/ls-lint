@@ -2,7 +2,6 @@
 # Provides lint function.
 
 require! {
-  util
   livescript: lsc
   'prelude-ls': {Obj, empty, map, compact, flatten, reject, split, sort-with}
   './load-rules'

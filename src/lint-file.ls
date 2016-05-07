@@ -11,7 +11,7 @@ require! {
 #   String -> a -> Promise
 module.exports = (file, opts)->
   new Promise (resolve, reject) ->
-    err, data <- fs.readFile file, encoding: \utf8
+    err, data <- fs.read-file file, encoding: \utf8
     if err
       reject err
     else

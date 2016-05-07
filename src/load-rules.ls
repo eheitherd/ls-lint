@@ -36,7 +36,7 @@ rule-file = \ls-lint.lson
 #   String -> {a: b}
 load-optional-lson = (lson-file) ->
   try
-    fs.accessSync lson-file, fs.R_OK
+    fs.access-sync lson-file, fs.R_OK
   catch
     return {}
   load-lson lson-file

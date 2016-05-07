@@ -10,6 +10,6 @@ require! {
 #   String -> {a: b}
 module.exports = (lson-file) ->
   lson-file
-  |> fs.readFileSync _, encoding: \utf8
+  |> fs.read-file-sync _, encoding: \utf8
   |> lsc.compile _, json:true
   |> JSON.parse
