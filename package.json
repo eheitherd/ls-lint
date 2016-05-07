@@ -1,0 +1,47 @@
+{
+  "name": "ls-lint",
+  "description": "Lint your LiveScript",
+  "version": "0.0.1",
+  "author": "Eheitherd Ceres",
+  "bin": "./bin/ls-lint",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "glob": "^7.0.3",
+    "livescript": "^1.4.0",
+    "prelude-ls": "^1.1.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-livescript": "^3.0.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-newer": "^1.1.0",
+    "gulp-util": "^3.0.7",
+    "vinyl-paths": "^2.1.0"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "ls-lint.lson",
+    "package.json",
+    "README.md"
+  ],
+  "keywords": [
+    "lint",
+    "livescript"
+  ],
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eheitherd/ls-lint.git"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "clean": "gulp clean",
+    "lint": "node ./bin/ls-lint ./**/*.ls?(on)",
+    "test": "gulp test"
+  }
+}

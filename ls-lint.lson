@@ -1,0 +1,287 @@
+###############################################################################
+# Rules for ls-lint
+#
+
+###############################################################################
+# Layout, appearance
+
+# value: numeric or \tab
+indent:
+  level: \error
+  value: 2
+
+# [note] Not supported yet
+indent-pipes:
+  level: \warning
+  value: no
+
+#
+max-line-length:
+  level: \warning
+  value: 79
+
+# [note] Not supported yet
+max-file-liens:
+  level: \warning
+  value: 100
+
+# [note] Not supported yet
+blank-lines-after-classes: \warning
+
+# [note] Not supported yet
+blank-lines-after-top-functions: \ignore
+
+# Require alignment in short form switch
+# [note] Not supported yet
+alignment-short-form-switch: \warning
+
+# LF or CRLF
+end-of-line:
+  level: \error
+  value: \LF
+
+# Last line needs single EOL
+eol-last: \warning
+
+# [note] Not supported yet
+no-trailing-semicolon: \error
+
+# [note] Not supported yet
+no-trailing-whitespace: \warning
+
+# Forbid semicolon
+# [note] Not supported yet
+no-multiple-statements: \error
+
+###############################################################################
+# Spacing
+
+# Spaces before the first word and after the last of list
+#   <[ list of words ]> or <[list of woards]>
+# [note] Not supported yet
+list-of-words-spacing:
+  level: \warning
+  value: true
+
+# Spaces inside parentheses
+#   (a + b) or ( a + b )
+# [note] Not supported yet
+parentheses-spacing:
+  level: \warning
+  value: false
+
+# Spaces inside curly braces
+#   {a: b} or { a: b }
+# [note] Not supported yet
+braces-spacing:
+  level: \warning
+  value: false
+
+# spaces inside brackets
+#   [1, 2] or list[ 1, 2 ]
+# [note] Not supported yet
+brackets-spacing:
+  level: \warning
+  value: false
+
+# Spaces around arrows
+# [note] '(-> 3)' is OK whether 'before' is true
+# [note] Not supported yet
+arrow-spacing:
+  level: \warning
+  value:
+    before: true
+    after: true
+
+# Spaces around commas
+# [note] Not supported yet
+comma-spacing:
+  level: \warning
+  value:
+    before: false
+    after: true
+
+# Spaces around colons
+# [note] Not supported yet
+colon-spacing:
+  level: \warning
+  value:
+    before: false
+    after: true
+
+# Spaces around operators, except unary operation
+# [note] Not supported yet
+operator-spacing: \error
+
+# Spaces around operators, in brackets for arrays
+#   list[i+3] or list[i + 3]
+# [note] Not supported yet
+operator-in-brackets-spacing: \ignore
+
+
+###############################################################################
+# Operators
+
+# [note] Not supported yet
+no-plusplus: \ignore
+
+# value: \English or \symbolic
+# [note] Not supported yet
+comparison-operator:
+  level: \warning
+  value: \English
+
+# value: \English or \symbolic
+# [note] Not supported yet
+logic-oparetor:
+  level: \warning
+  value: \English
+
+# value: \English or \symbolic or \method
+# [note] Not supported yet
+regex-operator:
+  level: \warning
+  value: yes
+
+
+###############################################################################
+# Commas
+
+# [note] Not supported yet
+no-trailing-comma: \warning
+
+# Prefer 'func 2 3' to 'func 2, 3'
+# [note] Not supported yet
+no-unnecessary-commma: \warning
+
+# Don't mix like 'func 2 a, 1'
+# [note] Not supported yet
+unify-use-of-comma: \error
+
+
+###############################################################################
+# Literals
+
+# Use double quotes without interpolations
+# [note] Not supported yet
+no-unnecessary-double-quotes: \warning
+
+# Use interpolation
+# [note] Not supported yet
+no-plus-for-concatenation: \warning
+
+
+###############################################################################
+# Identifier
+
+# [note] Not supported yet
+identifier-max-length:
+  level: \warning
+  value: 32
+
+# Prohibit non-alphanumeric like 日本語
+# [note] Not supported yet
+use-english-idetifier: \warning
+
+# values:
+#   \PascalCase or
+#   \camelCase or
+#   \chain-case or
+#   \snake_case or
+#   \SNAKE_CASE or
+#   \ignore
+# [note] Applies to alphanumeric only
+# [note] ignore when propety is quoted
+# [note] 'function' supports named function only
+naming-conventions:
+  level: \error
+  value:
+    class: \PascalCase
+    property: \chain-case
+    function: \chain-case
+    variable: \chain-case
+    constant: \chain-case
+
+# Use 'void' instead of 'undefined'
+# [note] Not supported yet
+no-undefinend: \error
+
+###############################################################################
+# Lists
+
+# Use list.0 instead of list[0]
+# [note] Not supported yet
+no-brackets-with-immidiate: \warning
+
+###############################################################################
+# Functions
+
+# Prefer 'func 1 2' to 'func(1 2)'
+# [note] Not supported yet
+no-parentheses-for-params: \warning
+
+# 'return' shouldn't be used at last
+# [note] Not supported yet
+no-return: \error
+
+# [note] Not supported yet
+max-lines-of-function:
+  level: \warning
+  value: 12
+
+# [note] Not supported yet
+cyclomatic-complexity:
+  level: \warning
+  value: 12
+
+# [note] Not supported yet
+no-unnecessary-fat-arrow: \warning
+
+# [note] Not supported yet
+no-empty-functions: \warning
+
+# [note] Not supported yet
+max-depth-of-nest:
+  level: \warning
+  value: 8
+
+# [note] Not supported yet
+max-params:
+  level: \warning
+  value: 8
+
+###############################################################################
+# Classes
+
+# 'this' shouldn't be used except when it is stand alone
+# [note] Not supported yet
+no-this: \error
+
+# Use 'this' instead of '@' when it is standalone
+# [note] Not supported yet
+no-standalone-at: \warning
+
+# Use '::'  instead of 'prototype'
+# [note] Not supported yet
+no-prototype: \warning
+
+###############################################################################
+# Comments
+
+# Prohibit non-alphanumeric like 日本語
+# [note] Not supported yet
+use-english-comment: \ignore
+
+# [note] Not supported yet
+no-inline-comments: \ignore
+
+###############################################################################
+# Debug
+
+# [note] Not supported yet
+no-throw-strings: \error
+
+# Don't use console or debugger.
+# [note] Not supported yet
+no-console: \warning
+no-debugger: \warning
