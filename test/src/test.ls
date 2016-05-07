@@ -5,6 +5,7 @@ require! 'prelude-ls': {each}
   test-indent
   test-max-line-length
   test-eol
+  test-spacing
   test-identifier
 
   test-cli

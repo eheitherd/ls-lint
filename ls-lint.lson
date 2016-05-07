@@ -86,7 +86,6 @@ brackets-spacing:
 
 # Spaces around arrows
 # [note] '(-> 3)' is OK whether 'before' is true
-# [note] Not supported yet
 arrow-spacing:
   level: \warning
   value:

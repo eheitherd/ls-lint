@@ -12,7 +12,7 @@ require! {
 #    String -> ({a: b}) -> [c]
 export lint = (src, opts = {}) ->
   try
-    lint-target = Obj.map (<| src), {lsc.tokens, lsc.ast}
+    lint-target = Obj.map (<| src), {tokens: lsc.lex, lsc.ast}
   catch e
     result = /(.*) on line (\d)|(.*)/.exec e.message
     if result.1
