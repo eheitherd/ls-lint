@@ -4,7 +4,7 @@ require! {
   glob
   chai: {expect}
   '../../lib/ls-lint': {lint}
-  'prelude-ls': {each}
+  'prelude-ls': {each, count-by}
 }
 
 reform-path = ->
@@ -12,9 +12,14 @@ reform-path = ->
   |> path.relative './', _
   |> (.replace /\\/g \/)
 
-module.exports = (...)->
-  describe 'lint me' (done) ->
+module.exports = (...) ->
+  describe 'lint me' ->
     glob.sync './**/*.ls?(on)'
-    |> each (file)->
-      src = fs.readFileSync file, encoding: \utf8
-      it (reform-path file), -> expect(lint src).to.eql []
+    |> each (file) ->
+      it (reform-path file), ->
+        fs.read-file-sync file, encoding: \utf8
+        |> lint
+        |> count-by (.level)
+        |> (.error)
+        |> (~= true)
+        |> -> expect it .to.be.false
