@@ -64,21 +64,18 @@ list-of-words-spacing:
 
 # Spaces inside parentheses
 #   (a + b) or ( a + b )
-# [note] Not supported yet
 parentheses-spacing:
   level: \warning
   value: false
 
 # Spaces inside curly braces
 #   {a: b} or { a: b }
-# [note] Not supported yet
 braces-spacing:
   level: \warning
   value: false
 
 # spaces inside brackets
 #   [1, 2] or list[ 1, 2 ]
-# [note] Not supported yet
 brackets-spacing:
   level: \warning
   value: false

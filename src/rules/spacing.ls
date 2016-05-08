@@ -4,6 +4,7 @@
 
 require! {
   'prelude-ls': {is-type, map, fold, compact}
+  './spacing/brackets-spacing'
   './spacing/arrow-spacing'
 }
 
@@ -12,6 +13,9 @@ require! {
 module.exports = ({tokens, rules}) ->
   check-spacing =
     [
+      brackets-spacing {type: \parentheses, start: \(, end: \)}
+      brackets-spacing {type: \braces, start: \{, end: \}}
+      brackets-spacing {type: \brackets, start: \[, end: \]}
       arrow-spacing
     ]
     |> map (<| rules)
@@ -24,9 +28,7 @@ module.exports = ({tokens, rules}) ->
 
 check-sequence = (check-spacing, {pre, post, result}, next) -->
   if pre?
-    join-pre = post `is-equal-pos` pre and pre.spaced? and not post.spaced?
-    join-next = post `is-equal-pos` next and not post.spaced?
-    if join-pre or join-next
+    if post `is-equal-pos` next and not post.spaced?
       {pre, post: next, result}
     else
       next-result = result ++ check-spacing pre, post, next
