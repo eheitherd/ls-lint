@@ -19,7 +19,7 @@ max-line-length:
   level: \warning
   value: 79
 
-# [note] Not supported yet
+#
 max-file-lines:
   level: \warning
   value: 100
@@ -232,7 +232,7 @@ cyclomatic-complexity:
   value: 12
 
 # [note] Not supported yet
-no-unnecessary-fat-arrow: \warning
+no-unnecessary-wavy-arrow: \warning
 
 # [note] Not supported yet
 no-empty-functions: \warning
