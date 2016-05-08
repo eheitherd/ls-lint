@@ -35,14 +35,14 @@ module.exports = (rules) ->
 #   {a: b} -> {a: {c: b, d: [(String -> Bool)]}}
 parse-rules = ->
   it
-  |> Obj.map (value) ->
-    if value is \ignore
-      func = [-> true]
-    else
-      func =
-        [is-pascal, is-camel, is-chain, is-snake, is-upper-snake]
-        |> filter (<| value)
-    {value, func}
+  |> Obj.map (value) -> {value, func: get-checkers value}
+
+get-checkers = (value) ->
+  if value is \ignore
+    [-> true]
+  else
+    [is-pascal, is-camel, is-chain, is-snake, is-upper-snake]
+    |> filter (<| value)
 
 is-non-ascii = (is /[^\x01-\x7e]/)
 is-quoted = (is /^".*"$|^'.*'$/)

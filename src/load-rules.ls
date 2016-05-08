@@ -7,29 +7,13 @@ require! {
   './load-lson'
 }
 
-# Store loaded rules with SIDE EFFECTS.
-rules = void
-
 # Loads lint rules from default lson file, root lson file or required file.
-# with SIDE EFFECTS for cache.
 #   {a: b} -> {c: d}
 module.exports = (opts) ->
-  unless rules?
-    default-rule-file =
-      module.filename |> path.dirname |> path.resolve _, "../#{rule-file}"
-    rules := do
-      default: load-lson default-rule-file
-      root: load-optional-lson "./#{rule-file}"
+  request-rules = if opts.rule-file then load-lson opts.rule-file else {}
+  opts-rules = opts.rules ? {}
 
-  if rules.request-file isnt opts.rule-file
-    rules.request = load-optional-lson opts.rule-file
-    rules.request-file = opts.rule-file
-
-  rules.opts = opts.rules ? {}
-
-  {} <<< rules.default <<< rules.root <<< rules.request <<< rules.opts
-
-rule-file = \ls-lint.lson
+  {} <<< default-rules <<< root-rules <<< request-rules <<< opts-rules
 
 # Loads optional lson file,
 # which returns empty object when required file can't be read.
@@ -40,3 +24,13 @@ load-optional-lson = (lson-file) ->
   catch
     return {}
   load-lson lson-file
+
+rule-file = \ls-lint.lson
+
+default-rules =
+  module.filename
+  |> path.dirname
+  |> path.resolve _, "../#{rule-file}"
+  |> load-lson
+
+root-rules = load-optional-lson "./#{rule-file}"

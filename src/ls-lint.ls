@@ -15,18 +15,13 @@ export lint = (src, opts = {}) ->
     lint-target = Obj.map (<| src), {tokens: lsc.lex, lsc.ast}
   catch e
     result = /(.*) on line (\d+)|(.*)/.exec e.message
-    if result.1
-      message = result.1
-      line = +result.2
-    else
-      message = result.3
-      line = void
+    [message, line] =
+      if result.1 then [result.1, +result.2] else [result.3, void]
     return [{rule: \compile, level: \fatal, line, message}]
 
   lint-target <<< {src, lines: (restruct-src src), rules: (load-rules opts)}
 
-  <[ ./rules/*.js ]>
-  |> load-rule-modules
+  rule-modules
   |> map (<| lint-target)
   |> flatten
   |> compact
@@ -35,6 +30,10 @@ export lint = (src, opts = {}) ->
     | x.line > y.line   => 1
     | x.line < y.line   => -1
     | _                 => compare-column x, y
+
+rule-modules =
+  <[ ./rules/*.js ]>
+  |> load-rule-modules
 
 # Returns list of {line(Number), src, eol}
 #   String -> [{a: b}]
