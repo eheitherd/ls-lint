@@ -7,8 +7,8 @@ message = [
   'No space is necessary before an arrow.'
   'A space is necessary after an arrow.'
   'No space is necessary after an arrow.'
-  'Spaces is necessary around an arrow.'
-  'No spaces is necessary around an arrow.'
+  'Spaces are necessary around an arrow.'
+  'No space is necessary around an arrow.'
 ]
 
 require! {
