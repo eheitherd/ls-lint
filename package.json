@@ -20,6 +20,9 @@
     "gulp-util": "^3.0.7",
     "vinyl-paths": "^2.1.0"
   },
+  "engines": {
+    "node": ">= 0.11.13"
+  },
   "files": [
     "bin",
     "lib",
