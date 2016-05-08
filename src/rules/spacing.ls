@@ -28,7 +28,7 @@ module.exports = ({tokens, rules}) ->
 
 check-sequence = (check-spacing, {pre, post, result}, next) -->
   if pre?
-    if post `is-equal-pos` next and not post.spaced?
+    if post `is-equal-pos` next and not post.spaced? and is-optional post
       {pre, post: next, result}
     else
       next-result = result ++ check-spacing pre, post, next
@@ -44,3 +44,5 @@ get-checker = (rule-modules) ->
 
 is-equal-pos = (a, b) ->
   a.3 is b.3 and a.4 is b.4
+
+is-optional = -> not (it.0 is \ID or it.0 is \STRNUM)
