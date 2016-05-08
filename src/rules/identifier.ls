@@ -21,10 +21,10 @@ get-identifier = (tokens, lines, obj) -->
   switch
     # class
     case obj.title?
-      [make-id lines, \class, obj.title ]
+      [make-id lines, \class, obj.title]
     # property
     case obj.key? and obj.val?
-      [make-id lines, \property, obj.key ]
+      [make-id lines, \property, obj.key]
     # function
     case obj.params? and obj.body? and obj.name?
       [make-func lines, \function, obj]

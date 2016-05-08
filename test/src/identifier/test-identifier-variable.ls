@@ -21,7 +21,7 @@ module.exports = (...) ->
           column: 1
           rule: \naming-conventions
           level: \error
-          message: "Variable 'aaAA' should be chain-case." ]
+          message: "Variable 'aaAA' should be chain-case."]
     it 'chain-case <- 日本語' ->
       expect(lint '変数 = 1\n').to.eql []
     it 'chain-case <- chain-case in function' ->
@@ -32,6 +32,6 @@ module.exports = (...) ->
           column: 4
           rule: \naming-conventions
           level: \error
-          message: "Variable 'aaAA' should be chain-case." ]
+          message: "Variable 'aaAA' should be chain-case."]
     it 'ignore constant chain-case <- SNAKE_CASE' ->
       expect(lint 'const AA_AA = 1\n', rules-constant).to.eql []

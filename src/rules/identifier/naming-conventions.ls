@@ -40,7 +40,7 @@ parse-rules = ->
       func = [-> true]
     else
       func =
-        [ is-pascal, is-camel, is-chain, is-snake, is-upper-snake ]
+        [is-pascal, is-camel, is-chain, is-snake, is-upper-snake]
         |> filter (<| value)
     {value, func}
 

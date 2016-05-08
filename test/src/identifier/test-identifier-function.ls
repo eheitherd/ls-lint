@@ -13,7 +13,7 @@ module.exports = (...) ->
           column: 10
           rule: \naming-conventions
           level: \error
-          message: "Function 'aaAA' should be chain-case." ]
+          message: "Function 'aaAA' should be chain-case."]
     it 'chain-case <- 日本語' ->
       expect(lint 'function 関数 then\n').to.eql []
     it 'with body' ->

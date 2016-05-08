@@ -10,7 +10,7 @@ module.exports = (...) ->
         * line: 1
           rule: \compile
           level: \fatal
-          message: 'missing `)`' ]
+          message: 'missing `)`']
     it 'order' ->
       expect(lint 'class aa\r\n\t->\r\n\ta_a: ->\r\n[]').to.eql [
         * line: 1
@@ -43,4 +43,4 @@ module.exports = (...) ->
         * line: 4
           rule: \eol-last
           level: \warning
-          message: 'Last line needs single EOL.' ]
+          message: 'Last line needs single EOL.']

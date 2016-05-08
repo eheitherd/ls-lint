@@ -25,14 +25,14 @@ module.exports = (...) ->
           column: 1
           rule: \naming-conventions
           level: \error
-          message: "Property 'AaAa' should be chain-case." ]
+          message: "Property 'AaAa' should be chain-case."]
     it 'chain-case <- UPPERCASE' ->
       expect(lint 'AAAA: 1\n').to.eql [
         * line: 1
           column: 1
           rule: \naming-conventions
           level: \error
-          message: "Property 'AAAA' should be chain-case." ]
+          message: "Property 'AAAA' should be chain-case."]
     it 'chain-case <- lowercase' ->
       expect(lint 'aaaa: 1\n').to.eql []
     it 'chain-case <- snake_case' ->
@@ -41,14 +41,14 @@ module.exports = (...) ->
           column: 1
           rule: \naming-conventions
           level: \error
-          message: "Property 'aa_aa' should be chain-case." ]
+          message: "Property 'aa_aa' should be chain-case."]
     it 'chain-case <- SNAKE_CASE' ->
       expect(lint 'AA_AA: 1\n').to.eql [
         * line: 1
           column: 1
           rule: \naming-conventions
           level: \error
-          message: "Property 'AA_AA' should be chain-case." ]
+          message: "Property 'AA_AA' should be chain-case."]
     it 'chain-case <- 日本語' ->
       expect(lint 'プロパティ* 1\n').to.eql []
 
@@ -60,7 +60,7 @@ module.exports = (...) ->
           column: 1
           rule: \naming-conventions
           level: \error
-          message: "Property 'aa-aa' should be camelCase." ]
+          message: "Property 'aa-aa' should be camelCase."]
 
     it 'snake_case <- snake_case' ->
       expect(lint 'aa_aa: 1\n', rules-snake).to.eql []
@@ -70,4 +70,4 @@ module.exports = (...) ->
           column: 1
           rule: \naming-conventions
           level: \error
-          message: "Property 'aa-aa' should be snake_case." ]
+          message: "Property 'aa-aa' should be snake_case."]

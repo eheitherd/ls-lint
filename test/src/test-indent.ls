@@ -23,7 +23,7 @@ module.exports = (...) ->
             column: 9
             rule: \indent
             level: \error
-            message: 'Indent should be 2 spaces.' ]
+            message: 'Indent should be 2 spaces.']
       it 'tab' ->
         expect(lint '->\n\t->\n\t\t->\n').to.eql [
           * line: 2
@@ -35,7 +35,7 @@ module.exports = (...) ->
             column: 3
             rule: \indent
             level: \error
-            message: 'Indent should be 2 spaces.' ]
+            message: 'Indent should be 2 spaces.']
     describe 'shouled be tab' (...) ->
       it 'tab' ->
         expect(lint '->\n\t->\n\t\t->\n', rules: rules-tab).to.eql []
@@ -50,4 +50,4 @@ module.exports = (...) ->
             column: 3
             rule: \indent
             level: \error
-            message: 'Indent should be tab.' ]
+            message: 'Indent should be tab.']

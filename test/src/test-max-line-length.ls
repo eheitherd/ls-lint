@@ -19,4 +19,4 @@ module.exports = (...) ->
       * line: 1
         rule: \max-line-length
         level: \warning
-        message: 'Max line length should be 79.' ]
+        message: 'Max line length should be 79.']

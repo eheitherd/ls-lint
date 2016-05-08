@@ -25,7 +25,7 @@ module.exports = (...) ->
           column: 7
           rule: \naming-conventions
           level: \error
-          message: "Constant 'aa-aa' should be SNAKE_CASE." ]
+          message: "Constant 'aa-aa' should be SNAKE_CASE."]
     it 'multiple definition per line' ->
       expect(lint 'const aa-aa = 1, bB = 2\n', rules-snake).to.eql [
         * line: 1
@@ -37,7 +37,7 @@ module.exports = (...) ->
           column: 18
           rule: \naming-conventions
           level: \error
-          message: "Constant 'bB' should be SNAKE_CASE." ]
+          message: "Constant 'bB' should be SNAKE_CASE."]
     it 'multiple line' ->
       expect(lint 'const\n  a = 1\n  b = 2\n    c = 3\n', rules-snake).to.eql [
         * line: 2
@@ -54,4 +54,4 @@ module.exports = (...) ->
           column: 5
           rule: \naming-conventions
           level: \error
-          message: "Constant 'c' should be SNAKE_CASE." ]
+          message: "Constant 'c' should be SNAKE_CASE."]
