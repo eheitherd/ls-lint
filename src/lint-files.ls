@@ -2,7 +2,7 @@
 # Lints required files.
 
 require! {
-  glob
+  'glob-all'
   fs
   'prelude-ls': {map, flatten, empty}
   './ls-lint'
@@ -12,23 +12,10 @@ require! {
 # Lints required files.
 #   [String] -> Promise
 module.exports = (paths) ->
-  paths
-  |> map -> glob-promise it .then lint-files-promise
-  |> Promise.all
-  |> (.then flatten)
-
-glob-promise = (arg) ->
-  resolve, reject <- new Promise _
-  err, files <- glob arg
-  switch
-  | err         => reject err
-  | empty files => reject new Error "Can't find file '#{arg}'."
-  | otherwise   => resolve files
-
-lint-files-promise = (files) ->
-  files
+  glob-all.sync paths
   |> map lint-file
   |> Promise.all
+  |> (.then flatten)
 
 # Lints single requied file.
 #   String -> a -> Promise

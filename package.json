@@ -1,12 +1,12 @@
 {
   "name": "ls-lint",
-  "description": "Lint your LiveScript",
+  "description": "Lint your LiveScript code",
   "version": "0.0.1",
   "author": "Eheitherd Ceres",
   "bin": "./bin/ls-lint",
   "dependencies": {
     "commander": "^2.9.0",
-    "glob": "^7.0.3",
+    "glob-all": "^3.0.3",
     "livescript": "^1.4.0",
     "prelude-ls": "^1.1.2"
   },

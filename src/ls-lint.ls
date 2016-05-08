@@ -25,7 +25,7 @@ export lint = (src, opts = {}) ->
 
   lint-target <<< {lines: (restruct-src src), rules: (load-rules opts)}
 
-  './rules/*.js'
+  <[ ./rules/*.js ]>
   |> load-rule-modules
   |> map (<| lint-target)
   |> flatten

@@ -4,15 +4,15 @@
 require! {
   'prelude-ls': {map}
   path
-  glob
+  'glob-all'
 }
 
 # Returns required rule modules.
-#   String -> [(a -> b)]
-module.exports = (rule-modules-glob) ->
-  rule-modules-glob
-  |> resolve-path
-  |> glob.sync
+#   [String] -> [(a -> b)]
+module.exports = (rule-module-paths) ->
+  rule-module-paths
+  |> map resolve-path
+  |> glob-all.sync
   |> map relative-path
   |> map (-> "./#{it}")
   |> map -> require it
