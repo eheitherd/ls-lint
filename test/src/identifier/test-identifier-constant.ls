@@ -11,7 +11,7 @@ rules-snake =
         variable: \chain-case
         constant: \SNAKE_CASE
 
-module.exports = (...)->
+module.exports = (...) ->
   describe 'constant' (...) ->
     it 'chain-case <- chain-case' ->
       expect(lint 'const aa-aa = 1\n').to.eql []

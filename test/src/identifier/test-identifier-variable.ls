@@ -11,7 +11,7 @@ rules-constant =
         variable: \chain-case
         constant: \ignore
 
-module.exports = (...)->
+module.exports = (...) ->
   describe 'variable' (...) ->
     it 'chain-case <- chain-case' ->
       expect(lint 'aa-aa = 1\n').to.eql []

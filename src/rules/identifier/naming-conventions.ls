@@ -9,7 +9,7 @@ require! {
 }
 
 # Verifies and returns the result. See ls-lint.lson
-#   {a: b} -> ({a: b} -> Maybe [{c: d}])
+#   {a: b} -> ({c: d} -> Maybe {e: f})
 module.exports = (rules) ->
   {level, value} = rules[camelize rule]
 

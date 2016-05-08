@@ -3,7 +3,7 @@ require! {
   '../../../lib/ls-lint': {lint}
 }
 
-module.exports = (...)->
+module.exports = (...) ->
   describe 'function' (...) ->
     it 'chain-case <- chain-case' ->
       expect(lint 'function aa-aa then\n').to.eql []

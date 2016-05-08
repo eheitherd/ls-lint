@@ -6,8 +6,9 @@ require! {
   commander: program
   'prelude-ls': {map, flatten, empty}
   '../package.json': my-package
-  './lint-file'
-  './reporter': {report-total-result, report-error}
+  './lint-files'
+  './reporters/report-total'
+  './reporters/report-error'
 }
 
 # Implements command line interface.
@@ -26,22 +27,8 @@ module.exports = (argv) ->
 
   # Lints required files.
   program.args
-  |> map -> glob-promise it .then lint-files-promise
-  |> Promise.all
-  |> (.then flatten)
-  |> (.then report-total-result)
-  |> -> it.catch ->
-    report-error it
-
-glob-promise = (arg) ->
-  resolve, reject <- new Promise _
-  err, files <- glob arg
-  switch
-  | err         => reject err
-  | empty files => reject new Error "Can't find file #{arg}."
-  | otherwise   => resolve files
-
-lint-files-promise = (files) ->
-  files
-  |> map lint-file
-  |> Promise.all
+  |> lint-files
+  |> (.then report-total)
+  |> (.then -> process.exit 0)
+  |> (.catch report-error)
+  |> (.then -> process.exit 1)

@@ -8,7 +8,7 @@ require! {
 }
 
 # Verifies and returns the result. See ls-lint.lson
-#   Object -> Maybe [Object]
+#   {a :b} -> Maybe [{c: d}]
 module.exports = ({tokens, rules}) ->
   check-spacing =
     [

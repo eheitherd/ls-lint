@@ -9,7 +9,7 @@ require! {
 
 # Returns required rule modules.
 #   String -> [(a -> b)]
-module.exports = (rule-modules-glob)->
+module.exports = (rule-modules-glob) ->
   rule-modules-glob
   |> resolve-path
   |> glob.sync

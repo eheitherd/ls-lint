@@ -15,7 +15,7 @@ rules-snake =
       level: \error
       value: property: \snake_case
 
-module.exports = (...)->
+module.exports = (...) ->
   describe 'property' (...) ->
     it 'chain-case <- chain-case' ->
       expect(lint 'aa-aa: 1\n').to.eql []

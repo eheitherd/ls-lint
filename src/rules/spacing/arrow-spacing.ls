@@ -16,13 +16,13 @@ require! {
 }
 
 # Verifies and returns the result. See ls-lint.lson
-#   Object -> (Object -> Object -> Object -> Maybe [Object])
+#   {a: b} -> ({c: d} -> {c: d} -> {c: d} -> Maybe {e: f})
 module.exports = (rules) ->
   {level, value} = rules[camelize rule]
 
   if level isnt \ignore
     # return function to lint
-    #   Object -> Object -> Object -> Maybe Object
+    #   {a: b} -> {a: b} -> {a: b} -> Maybe {c: d}
     (pre, post, next) ->
       if post.0 is \-> or post.0 is \<-
         before-spacing =

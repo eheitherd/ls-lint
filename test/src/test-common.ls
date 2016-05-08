@@ -3,7 +3,7 @@ require! {
   '../../lib/ls-lint': {lint}
 }
 
-module.exports = (...)->
+module.exports = (...) ->
   describe \common (...) ->
     it 'compile error' ->
       expect(lint '(').to.eql [

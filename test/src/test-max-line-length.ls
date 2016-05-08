@@ -12,7 +12,7 @@ abcdefghijklmnopqrstuvwxyz: abcdefghijklmnopqrstuvwxyz: abcdefghijklmnopqrstuvw
 x\n
 '
 
-module.exports = (...)->
+module.exports = (...) ->
   describe \max-line-length (...) ->
     it 'length is 79' -> expect(lint length79).to.eql []
     it 'length is 80' -> expect(lint length80).to.eql [

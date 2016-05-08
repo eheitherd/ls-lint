@@ -13,7 +13,7 @@ report = (rule, line, level, value) ->
 
 # Verifies and returns the result. See ls-lint.lson
 #   {a: b} -> Maybe [{c: d}]
-module.exports = ({lines, rules})->
+module.exports = ({lines, rules}) ->
   {level, value} = rules[camelize rule]
 
   if level isnt \ignore

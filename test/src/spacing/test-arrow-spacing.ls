@@ -11,7 +11,7 @@ test-rules =
         before: false
         after:  false
 
-module.exports = (...)->
+module.exports = (...) ->
   describe 'arrow' (...) ->
     it '(a = -> 1) <- (a = -> 1)' ->
       expect(lint 'a = -> 1\n').to.eql []

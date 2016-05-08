@@ -10,7 +10,7 @@ require! {
 
 # Verifies and returns the result. See ls-lint.lson
 #   {a: b} -> Maybe [{c: d}]
-module.exports = ({lines, rules})->
+module.exports = ({lines, rules}) ->
   {level, value} = rules[camelize rule]
   value-set = get-value-set value
 

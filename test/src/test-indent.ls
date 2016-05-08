@@ -8,7 +8,7 @@ rules-tab =
     level: \error
     value: \tab
 
-module.exports = (...)->
+module.exports = (...) ->
   describe \indent (...) ->
     describe 'shouled be 2 spaces' (...) ->
       it '2 space' -> expect(lint '->\n  ->\n    ->\n').to.eql []

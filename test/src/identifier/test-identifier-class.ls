@@ -3,7 +3,7 @@ require! {
   '../../../lib/ls-lint': {lint}
 }
 
-module.exports = (...)->
+module.exports = (...) ->
   describe 'class' (...) ->
     it 'PascalCase <- PascalCase' ->
       expect(lint 'class AaAa\n').to.eql []
