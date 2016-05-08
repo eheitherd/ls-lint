@@ -23,7 +23,7 @@ export lint = (src, opts = {}) ->
       line = void
     return [{rule: \compile, level: \fatal, line, message}]
 
-  lint-target <<< {lines: (restruct-src src), rules: (load-rules opts)}
+  lint-target <<< {src, lines: (restruct-src src), rules: (load-rules opts)}
 
   <[ ./rules/*.js ]>
   |> load-rule-modules

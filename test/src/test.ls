@@ -6,8 +6,8 @@ require! 'prelude-ls': {each}
   test-max-line-length
   test-eol
   test-spacing
+  test-no-variables
   test-identifier
-
   test-cli
   test-lint-me
 ]>

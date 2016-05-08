@@ -166,7 +166,6 @@ no-plus-for-concatenation: \warning
 # Variables
 
 # Not rewriting variables
-# [note] Not supported yet
 no-variables: \warning
 
 #------------------------------------------------------------------------------
