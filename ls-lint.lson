@@ -20,7 +20,7 @@ max-line-length:
   value: 79
 
 # [note] Not supported yet
-max-file-liens:
+max-file-lines:
   level: \warning
   value: 100
 
