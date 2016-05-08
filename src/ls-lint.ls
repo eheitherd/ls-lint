@@ -14,7 +14,7 @@ export lint = (src, opts = {}) ->
   try
     lint-target = Obj.map (<| src), {tokens: lsc.lex, lsc.ast}
   catch e
-    result = /(.*) on line (\d)|(.*)/.exec e.message
+    result = /(.*) on line (\d+)|(.*)/.exec e.message
     if result.1
       message = result.1
       line = +result.2

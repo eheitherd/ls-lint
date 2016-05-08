@@ -8,9 +8,6 @@ require! {
   'prelude-ls': {map, compact, camelize}
 }
 
-report = (rule, line, level, value) ->
-  {rule, line, level, message: "Max line length should be #{value}."}
-
 # Verifies and returns the result. See ls-lint.lson
 #   {a: b} -> Maybe [{c: d}]
 module.exports = ({lines, rules}) ->

@@ -1,7 +1,7 @@
 require! {
   fs
   path
-  glob
+  'glob-all'
   chai: {expect}
   '../../lib/ls-lint': {lint}
   'prelude-ls': {each, count-by}
@@ -14,7 +14,7 @@ reform-path = ->
 
 module.exports = (...) ->
   describe 'lint me' ->
-    glob.sync './**/*.ls?(on)'
+    glob-all.sync './**/*.ls?(on)'
     |> each (file) ->
       it (reform-path file), ->
         fs.read-file-sync file, encoding: \utf8
