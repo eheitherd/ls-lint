@@ -1,8 +1,7 @@
-###############################################################################
+#------------------------------------------------------------------------------
 # Rules for ls-lint
-#
 
-###############################################################################
+#------------------------------------------------------------------------------
 # Layout, appearance
 
 # value: numeric or \tab
@@ -53,7 +52,7 @@ no-trailing-whitespace: \warning
 # [note] Not supported yet
 no-multiple-statements: \error
 
-###############################################################################
+#------------------------------------------------------------------------------
 # Spacing
 
 # Spaces before the first word and after the last of list
@@ -117,8 +116,7 @@ operator-spacing: \error
 # [note] Not supported yet
 operator-in-brackets-spacing: \ignore
 
-
-###############################################################################
+#------------------------------------------------------------------------------
 # Operators
 
 # [note] Not supported yet
@@ -142,8 +140,7 @@ regex-operator:
   level: \warning
   value: yes
 
-
-###############################################################################
+#------------------------------------------------------------------------------
 # Commas
 
 # [note] Not supported yet
@@ -157,8 +154,7 @@ no-unnecessary-commma: \warning
 # [note] Not supported yet
 unify-use-of-comma: \error
 
-
-###############################################################################
+#------------------------------------------------------------------------------
 # Literals
 
 # Use double quotes without interpolations
@@ -169,8 +165,14 @@ no-unnecessary-double-quotes: \warning
 # [note] Not supported yet
 no-plus-for-concatenation: \warning
 
+#------------------------------------------------------------------------------
+# Variables
 
-###############################################################################
+# Not rewriting variables
+# [note] Not supported yet
+no-variables: \warning
+
+#------------------------------------------------------------------------------
 # Identifier
 
 # [note] Not supported yet
@@ -205,14 +207,14 @@ naming-conventions:
 # [note] Not supported yet
 no-undefinend: \error
 
-###############################################################################
+#------------------------------------------------------------------------------
 # Lists
 
 # Use list.0 instead of list[0]
 # [note] Not supported yet
 no-brackets-with-immidiate: \warning
 
-###############################################################################
+#------------------------------------------------------------------------------
 # Functions
 
 # Prefer 'func 1 2' to 'func(1 2)'
@@ -249,7 +251,7 @@ max-params:
   level: \warning
   value: 8
 
-###############################################################################
+#------------------------------------------------------------------------------
 # Classes
 
 # 'this' shouldn't be used except when it is stand alone
@@ -264,7 +266,7 @@ no-standalone-at: \warning
 # [note] Not supported yet
 no-prototype: \warning
 
-###############################################################################
+#------------------------------------------------------------------------------
 # Comments
 
 # Prohibit non-alphanumeric like 日本語
@@ -274,7 +276,7 @@ use-english-comment: \ignore
 # [note] Not supported yet
 no-inline-comments: \ignore
 
-###############################################################################
+#------------------------------------------------------------------------------
 # Debug
 
 # [note] Not supported yet
