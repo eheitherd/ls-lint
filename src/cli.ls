@@ -2,9 +2,7 @@
 # Implements command line interface.
 
 require! {
-  glob
   commander: program
-  'prelude-ls': {map, flatten, empty}
   '../package.json': my-package
   './lint-files'
   './reporters/report-total'
