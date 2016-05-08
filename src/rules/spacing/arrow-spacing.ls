@@ -26,13 +26,13 @@ module.exports = (rules) ->
     (pre, post, next) ->
       if post.0 is \-> or post.0 is \<-
         before-spacing =
-          | pre.0 is \CALL(   => value.before
-          | pre.spaced?       => true
-          | otherwise         => false
+          | pre.0 isnt \)PARAM  => value.before
+          | pre.spaced?         => true
+          | otherwise           => false
         after-spacing =
-          | next.0 is \)CALL  => value.after
-          | post.spaced?      => true
-          | otherwise         => false
+          | next.0 is /\)|\]|}/ => value.after
+          | post.spaced?        => true
+          | otherwise           => false
 
         get-message before-spacing, after-spacing, value
         |> map ->
