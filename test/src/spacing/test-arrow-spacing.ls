@@ -37,7 +37,7 @@ module.exports = (...) ->
           column: 4
           rule: \arrow-spacing
           level: \warning
-          message: 'Spaces is necessary around an arrow.'
+          message: 'Spaces are necessary around an arrow.'
         ]
     it 'b:true a:true <= (->)' ->
       expect(lint '(->)\n').to.eql []
@@ -77,7 +77,7 @@ module.exports = (...) ->
           column: 5
           rule: \arrow-spacing
           level: \warning
-          message: 'No spaces is necessary around an arrow.'
+          message: 'No space is necessary around an arrow.'
         ]
     it 'b:false a:false <= (->)' ->
       expect(lint '(->)\n' test-rules).to.eql []
