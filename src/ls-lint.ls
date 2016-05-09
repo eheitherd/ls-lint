@@ -3,7 +3,9 @@
 
 require! {
   livescript: lsc
-  'prelude-ls': {Obj, empty, map, compact, flatten, reject, split, sort-with}
+  'prelude-ls': {
+    Obj, Str, empty, map, compact, flatten, reject, split,
+    last, initial, sort-with}
   './load-rules'
   './load-rule-modules'
 }
@@ -40,6 +42,7 @@ rule-modules =
 restruct-src = ->
   it
   |> split /(\r?\n)/
+  |> trim-last
   |> restruct-src-line 1
 
 # Returns list of {line(Number), src, eol} from [src, eol, src, ...].
@@ -47,6 +50,8 @@ restruct-src = ->
 #    Int -> [a] -> [{b: c}]
 restruct-src-line = (line, [src, eol, ...cs]) -->
   [{line, src, eol}] ++ if empty cs then [] else restruct-src-line line + 1, cs
+
+trim-last = -> if Str.empty last it then initial it else it
 
 compare-column = (x, y) ->
   | x.column? and not y.column?   => -1

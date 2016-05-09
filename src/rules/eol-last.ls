@@ -5,7 +5,7 @@ rule = \eol-last
 message = "Last line needs single EOL."
 
 require! {
-  'prelude-ls': {at, camelize, Str}
+  'prelude-ls': {last, camelize, Str}
 }
 
 # Verifies and returns the result. See ls-lint.lson
@@ -14,10 +14,6 @@ module.exports = ({lines, rules}) ->
   level = rules[camelize rule]
 
   if level isnt \ignore
-    last1 = at -1 lines
-    last2 = at -2 lines
-
-    unless Str.empty last1.src or last1.eol?
-      {rule, last1.line, level, message}
-    else if Str.empty last2.src
-      {rule, last2.line, level, message}
+    last-line = last lines
+    if Str.empty last-line.src or not last-line.eol?
+      {rule, last-line.line, level, message}

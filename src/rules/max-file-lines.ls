@@ -13,10 +13,5 @@ require! {
 module.exports = ({lines, rules}) ->
   {level, value} = rules[camelize rule]
 
-  if level isnt \ignore
-    last-line = lines[* - 1]
-    number-of-lines =
-      | Str.empty last-line.src and not last-line.eol?  => lines.length - 1
-      | otherwise                                       => lines.length
-    if number-of-lines > value
-      {rule, line: number-of-lines, level, message: message value}
+  if level isnt \ignore and lines.length > value
+    {rule, line: lines.length, level, message: message value}
