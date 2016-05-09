@@ -3,8 +3,8 @@ require! {
   '../../lib/ls-lint': {lint}
 }
 
-rules-crlf =
-  rules:
+opts-crlf =
+  config:
     end-of-line:
       level: \error
       value: \crlf
@@ -24,9 +24,9 @@ module.exports = (...) ->
           level: \error
           message: 'End of line should be LF.']
     it 'CRLF <- CRLF' ->
-      expect(lint 'a\r\nbb\r\nccc\r\n', rules-crlf).to.eql []
+      expect(lint 'a\r\nbb\r\nccc\r\n', opts-crlf).to.eql []
     it 'CRLF <- LF' ->
-      expect(lint 'a\nbb\r\nccc\n', rules-crlf).to.eql [
+      expect(lint 'a\nbb\r\nccc\n', opts-crlf).to.eql [
         * line: 1
           rule: \end-of-line
           level: \error

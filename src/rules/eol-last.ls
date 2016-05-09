@@ -10,8 +10,8 @@ require! {
 
 # Verifies and returns the result. See ls-lint.lson
 #   {a: b} -> Maybe [{c: d}]
-module.exports = ({lines, rules}) ->
-  level = rules[camelize rule]
+module.exports = ({lines, config}) ->
+  level = config[camelize rule]
 
   if level isnt \ignore
     last-line = last lines

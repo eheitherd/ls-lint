@@ -6,7 +6,7 @@ require! {
   'prelude-ls': {
     Obj, Str, empty, map, compact, flatten, reject, split,
     last, initial, sort-with}
-  './load-rules'
+  './load-config'
   './load-rule-modules'
 }
 
@@ -21,7 +21,7 @@ export lint = (src, opts = {}) ->
       if result.1 then [result.1, +result.2] else [result.3, void]
     return [{rule: \compile, level: \fatal, line, message}]
 
-  lint-target <<< {src, lines: (restruct-src src), rules: (load-rules opts)}
+  lint-target <<< {src, lines: (restruct-src src), config: (load-config opts)}
 
   rule-modules
   |> map (<| lint-target)

@@ -10,8 +10,8 @@ require! {
 
 # Verifies and returns the result. See ls-lint.lson
 #   {a: b} -> Maybe [{c: d}]
-module.exports = ({lines, rules}) ->
-  {level, value} = rules[camelize rule]
+module.exports = ({lines, config}) ->
+  {level, value} = config[camelize rule]
   value-set = get-value-set value
 
   if level isnt \ignore and value-set

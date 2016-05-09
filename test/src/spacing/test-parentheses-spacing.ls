@@ -3,8 +3,8 @@ require! {
   '../../../lib/ls-lint': {lint}
 }
 
-test-rules =
-  rules:
+test-opts =
+  config:
     parentheses-spacing:
       level: \warning
       value: true
@@ -30,9 +30,9 @@ module.exports = (...) ->
           message: 'No space is necessary inside parentheses.'
         ]
     it 'need <= ( 1 + 1 )' ->
-      expect(lint '( 1 + 1 )\n', test-rules).to.eql []
+      expect(lint '( 1 + 1 )\n', test-opts).to.eql []
     it 'need <= ( 1 + 1)' ->
-      expect(lint '( 1 + 1)\n', test-rules).to.eql [
+      expect(lint '( 1 + 1)\n', test-opts).to.eql [
         * line: 1
           column: 8
           rule: \parentheses-spacing
@@ -40,7 +40,7 @@ module.exports = (...) ->
           message: 'Spaces are necessary inside parentheses.'
         ]
     it 'need <= (1 + 1 )' ->
-      expect(lint '(1 + 1 )\n', test-rules).to.eql [
+      expect(lint '(1 + 1 )\n', test-opts).to.eql [
         * line: 1
           column: 2
           rule: \parentheses-spacing

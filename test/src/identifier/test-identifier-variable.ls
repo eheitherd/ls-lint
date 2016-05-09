@@ -3,8 +3,8 @@ require! {
   '../../../lib/ls-lint': {lint}
 }
 
-rules-constant =
-  rules:
+opts-constant =
+  config:
     naming-conventions:
       level: \error
       value:
@@ -34,4 +34,4 @@ module.exports = (...) ->
           level: \error
           message: "Variable 'aaAA' should be chain-case."]
     it 'ignore constant chain-case <- SNAKE_CASE' ->
-      expect(lint 'const AA_AA = 1\n', rules-constant).to.eql []
+      expect(lint 'const AA_AA = 1\n', opts-constant).to.eql []

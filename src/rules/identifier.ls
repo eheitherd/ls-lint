@@ -9,10 +9,10 @@ require! {
 
 # Verifies and returns the result. See ls-lint.lson
 #   {a: b} -> Maybe [{c: d}]
-module.exports = ({tokens, ast, lines, rules}) ->
+module.exports = ({tokens, ast, lines, config}) ->
   fold-deep (get-identifier tokens, lines), ast
   |> filter (.type?)
-  |> map (naming-conventions rules)
+  |> map (naming-conventions config)
   |> flatten
 
 # Verifies each identifier

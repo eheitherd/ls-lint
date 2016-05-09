@@ -10,7 +10,7 @@ require! {
 
 # Verifies and returns the result. See ls-lint.lson
 #   {a :b} -> Maybe [{c: d}]
-module.exports = ({tokens, rules}) ->
+module.exports = ({tokens, config}) ->
   check-spacing =
     [
       brackets-spacing {type: \parentheses, start: \(, end: \)}
@@ -18,7 +18,7 @@ module.exports = ({tokens, rules}) ->
       brackets-spacing {type: \brackets, start: \[, end: \]}
       arrow-spacing
     ]
-    |> map (<| rules)
+    |> map (<| config)
     |> get-checker
 
   tokens

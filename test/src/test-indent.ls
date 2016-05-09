@@ -3,10 +3,11 @@ require! {
   '../../lib/ls-lint': {lint}
 }
 
-rules-tab =
-  indent:
-    level: \error
-    value: \tab
+opts-tab =
+  config:
+    indent:
+      level: \error
+      value: \tab
 
 module.exports = (...) ->
   describe \indent (...) ->
@@ -38,9 +39,9 @@ module.exports = (...) ->
             message: 'Indent should be 2 spaces.']
     describe 'shouled be tab' (...) ->
       it 'tab' ->
-        expect(lint '->\n\t->\n\t\t->\n', rules: rules-tab).to.eql []
+        expect(lint '->\n\t->\n\t\t->\n', opts-tab).to.eql []
       it '1 space' ->
-        expect(lint '->\n ->\n  ->\n', rules: rules-tab).to.eql [
+        expect(lint '->\n ->\n  ->\n', opts-tab).to.eql [
           * line: 2
             column: 2
             rule: \indent

@@ -17,8 +17,8 @@ require! {
 
 # Verifies and returns the result. See ls-lint.lson
 #   {a: b} -> ({c: d} -> {c: d} -> {c: d} -> Maybe {e: f})
-module.exports = (rules) ->
-  {level, value} = rules[camelize rule]
+module.exports = (config) ->
+  {level, value} = config[camelize rule]
 
   if level isnt \ignore
     # return function to lint

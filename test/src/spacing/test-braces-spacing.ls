@@ -3,8 +3,8 @@ require! {
   '../../../lib/ls-lint': {lint}
 }
 
-test-rules =
-  rules:
+test-opts =
+  config:
     braces-spacing:
       level: \warning
       value: true
@@ -30,9 +30,9 @@ module.exports = (...) ->
           message: 'No space is necessary inside braces.'
         ]
     it 'need <= { a: 1 }' ->
-      expect(lint '{ a: 1 }\n', test-rules).to.eql []
+      expect(lint '{ a: 1 }\n', test-opts).to.eql []
     it 'need <= { a: 1}' ->
-      expect(lint '{ a: 1}\n', test-rules).to.eql [
+      expect(lint '{ a: 1}\n', test-opts).to.eql [
         * line: 1
           column: 7
           rule: \braces-spacing
@@ -40,7 +40,7 @@ module.exports = (...) ->
           message: 'Spaces are necessary inside braces.'
         ]
     it 'need <= {a: 1 }' ->
-      expect(lint '{a: 1 }\n', test-rules).to.eql [
+      expect(lint '{a: 1 }\n', test-opts).to.eql [
         * line: 1
           column: 2
           rule: \braces-spacing

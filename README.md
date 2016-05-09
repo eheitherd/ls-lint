@@ -22,18 +22,26 @@ Returns a list of errors, warnings.
 
 ##### options
 
-* `rule-file`
+* 'config-file'
+
+  Path for your configuration file.
+
+* `config`
+
+  This overwrites configuration of your configuration file or default.
+
+* `rule-file` [DEPRECATED]
 
   Path for your rule file.
 
-* `rules`
+* `rules` [DEPRECATED]
 
   This overwrites rules of your rule file or defaults.
 
 ```livescript
 options =
-  rule-file: \./my-rule.lson
-  rules:
+  config-file: \./my-config.lson
+  config:
     eol-last: \ignore
 ```
 

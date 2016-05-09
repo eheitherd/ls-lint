@@ -3,14 +3,14 @@ require! {
   '../../../lib/ls-lint': {lint}
 }
 
-rules-camel =
-  rules:
+opts-camel =
+  config:
     naming-conventions:
       level: \error
       value: property: \camelCase
 
-rules-snake =
-  rules:
+opts-snake =
+  config:
     naming-conventions:
       level: \error
       value: property: \snake_case
@@ -53,9 +53,9 @@ module.exports = (...) ->
       expect(lint 'プロパティ* 1\n').to.eql []
 
     it 'camelCase <- camelCase' ->
-      expect(lint 'aaAa: 1\n', rules-camel).to.eql []
+      expect(lint 'aaAa: 1\n', opts-camel).to.eql []
     it 'camelCase <- chain-case' ->
-      expect(lint 'aa-aa: 1\n', rules-camel).to.eql [
+      expect(lint 'aa-aa: 1\n', opts-camel).to.eql [
         * line: 1
           column: 1
           rule: \naming-conventions
@@ -63,9 +63,9 @@ module.exports = (...) ->
           message: "Property 'aa-aa' should be camelCase."]
 
     it 'snake_case <- snake_case' ->
-      expect(lint 'aa_aa: 1\n', rules-snake).to.eql []
+      expect(lint 'aa_aa: 1\n', opts-snake).to.eql []
     it 'snake_case <- chain-case' ->
-      expect(lint 'aa-aa: 1\n', rules-snake).to.eql [
+      expect(lint 'aa-aa: 1\n', opts-snake).to.eql [
         * line: 1
           column: 1
           rule: \naming-conventions

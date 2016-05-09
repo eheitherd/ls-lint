@@ -11,10 +11,10 @@ require! {
 
 # Verifies and returns the result. See ls-lint.lson
 #   {a: b} -> {c: d} -> ({e: f} -> {e: f} -> {e: f} -> Maybe {g: h})
-module.exports = (brackets, rules) -->
+module.exports = (brackets, config) -->
   {type, start, end} = brackets
   rule = get-rule type
-  {level, value} = rules[camelize rule]
+  {level, value} = config[camelize rule]
   message = get-message type, value
 
   if level isnt \ignore

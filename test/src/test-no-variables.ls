@@ -3,8 +3,8 @@ require! {
   '../../lib/ls-lint': {lint}
 }
 
-rules-test =
-  rules:
+opts-test =
+  config:
     no-variables: \ignore
 
 module.exports = (...) ->
@@ -18,4 +18,4 @@ module.exports = (...) ->
           level: \warning
           message: 'Should not rewrite variables.']
     it 'ignore' ->
-      expect(lint 'a = 1\na = 2\n', rules-test).to.eql []
+      expect(lint 'a = 1\na = 2\n', opts-test).to.eql []

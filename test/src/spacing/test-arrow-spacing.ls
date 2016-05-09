@@ -3,8 +3,8 @@ require! {
   '../../../lib/ls-lint': {lint}
 }
 
-test-rules =
-  rules:
+test-opts =
+  config:
     arrow-spacing:
       level: \warning
       value:
@@ -54,9 +54,9 @@ module.exports = (...) ->
     it 'b:true a:true <= {a: ->}' ->
       expect(lint '{a: ->}\n').to.eql []
     it 'b:false a:false <= (a)->1' ->
-      expect(lint '(a)->1\n' test-rules).to.eql []
+      expect(lint '(a)->1\n' test-opts).to.eql []
     it 'b:false a:false <= (a)->1' ->
-      expect(lint '(a) ->1\n' test-rules).to.eql [
+      expect(lint '(a) ->1\n' test-opts).to.eql [
         * line: 1
           column: 5
           rule: \arrow-spacing
@@ -64,7 +64,7 @@ module.exports = (...) ->
           message: 'No space is necessary before an arrow.'
         ]
     it 'b:false a:false <= (a)-> 1' ->
-      expect(lint '(a)-> 1\n' test-rules).to.eql [
+      expect(lint '(a)-> 1\n' test-opts).to.eql [
         * line: 1
           column: 4
           rule: \arrow-spacing
@@ -72,7 +72,7 @@ module.exports = (...) ->
           message: 'No space is necessary after an arrow.'
         ]
     it 'b:false a:false <= (a) -> 1' ->
-      expect(lint '(a) -> 1\n' test-rules).to.eql [
+      expect(lint '(a) -> 1\n' test-opts).to.eql [
         * line: 1
           column: 5
           rule: \arrow-spacing
@@ -80,9 +80,9 @@ module.exports = (...) ->
           message: 'No space is necessary around an arrow.'
         ]
     it 'b:false a:false <= (->)' ->
-      expect(lint '(->)\n' test-rules).to.eql []
+      expect(lint '(->)\n' test-opts).to.eql []
     it 'b:false a:false <= (-> 1)' ->
-      expect(lint '(-> 1)\n' test-rules).to.eql [
+      expect(lint '(-> 1)\n' test-opts).to.eql [
         * line: 1
           column: 2
           rule: \arrow-spacing
@@ -90,6 +90,6 @@ module.exports = (...) ->
           message: 'No space is necessary after an arrow.'
         ]
     it 'b:false a:false <= [->]' ->
-      expect(lint '[->]\n' test-rules).to.eql []
+      expect(lint '[->]\n' test-opts).to.eql []
     it 'b:false a:false <= {a: ->}' ->
-      expect(lint '{a: ->}\n' test-rules).to.eql []
+      expect(lint '{a: ->}\n' test-opts).to.eql []
