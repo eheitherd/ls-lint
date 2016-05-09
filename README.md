@@ -22,7 +22,7 @@ Returns a list of errors, warnings.
 
 ##### options
 
-* 'config-file'
+* `config-file`
 
   Path for your configuration file.
 
