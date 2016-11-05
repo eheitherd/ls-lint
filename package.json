@@ -5,9 +5,9 @@
   "author": "Eheitherd Ceres",
   "bin": "./bin/ls-lint",
   "dependencies": {
-    "commander": "^2.9.0",
     "glob-all": "^3.1.0",
     "livescript": "^1.5.0",
+    "optionator": "^0.8.2",
     "prelude-ls": "^1.1.2"
   },
   "devDependencies": {
