@@ -35,3 +35,7 @@ module.exports = (...) ->
           message: "Variable 'aaAA' should be chain-case."]
     it 'ignore constant chain-case <- SNAKE_CASE' ->
       expect(lint 'const AA_AA = 1\n', opts-constant).to.eql []
+    it 'chain-case <- start with _' ->
+      expect(lint '_aa = 1\n').to.eql []
+    it 'chain-case <- end with _' ->
+      expect(lint 'aa_ = 1\n').to.eql []
