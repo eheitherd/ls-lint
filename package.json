@@ -1,7 +1,7 @@
 {
   "name": "ls-lint",
   "description": "Lint your LiveScript code",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Eheitherd Ceres",
   "bin": "./bin/ls-lint",
   "dependencies": {
