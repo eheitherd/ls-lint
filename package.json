@@ -44,7 +44,7 @@
   "scripts": {
     "build": "gulp build",
     "clean": "gulp clean",
-    "lint": "node ./bin/ls-lint ./**/*.ls?(on)",
+    "lint": "node ./bin/ls-lint './**/*.ls?(on)'",
     "test": "gulp test"
   }
 }
