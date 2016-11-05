@@ -48,10 +48,21 @@ print-error = (e) ->
   fail-p!
 
 optionator = (require \optionator) do
-  prepend: 'Usage: ls-lint [options] [files]'
+  prepend:  '''
+            lint livescript source files
+
+            Usage: ls-lint [options]... [files]...
+            '''
   append: "Version #{my-package.version}"
   options:
     * heading: \Options
+    * option: \config
+      alias: \c
+      type: \file::String
+      description: 'use specified configuration file'
+    * option: \print-config
+      type: \Boolean
+      description: 'print the configuration'
     * option: \help
       alias: \h
       type: \Boolean
