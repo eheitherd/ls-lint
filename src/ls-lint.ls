@@ -6,9 +6,9 @@ require! {
   'prelude-ls': {
     Obj, Str, empty, map, compact, flatten, reject, split,
     last, initial, sort-with}
-  './load-default-config'
+  './default-config': {load-default-config}
   './load-rule-modules'
-  './util/util-obj': {deep-merge}
+  './utils/util-obj': {deep-merge}
 }
 
 # Lints LiveScript source.

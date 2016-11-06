@@ -5,7 +5,7 @@ require! {
   fs
   path
   './load-lson'
-  './util/util-obj': {deep-merge}
+  './utils/util-obj': {deep-merge}
 }
 
 # Loads lint configuration from lson files,
