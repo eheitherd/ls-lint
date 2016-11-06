@@ -2,7 +2,7 @@
 # Implements command line interface.
 
 require! {
-  'prelude-ls': {each, empty}
+  'prelude-ls': {each, empty, map, lines, unlines}
   '../package.json': my-package
   './load-config'
   './default-config': {read-default-config}
@@ -46,7 +46,8 @@ print-version = ->
   return-p!
 
 print-help = ->
-  println optionator.generate-help!
+  optionator.generate-help!
+  |> lines |> map (-> "  #{it}") |> unlines |> println
   return-p!
 
 print-config = (config-file) ->
