@@ -23,7 +23,7 @@ module.exports = (list-of-totals) ->
         num = it[level]
         "#{num} #{level}#{if num isnt 1 then 's' else ''}"
       |> join ', '
-    "\n  #{result-mark-str} #{result-str} in #{file-num-str}."
+    "\n  #{result-mark-str} #{result-str} in #{file-num-str}.\n"
   |> println
 
 sum-up = (targets, results) -->

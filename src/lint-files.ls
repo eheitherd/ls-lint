@@ -6,12 +6,15 @@ require! {
   fs
   'prelude-ls': {map, flatten, empty}
   './ls-lint'
+  './reporters/report-utils': {println}
   './reporters/report-lint-file'
 }
 
 # Lints required files.
 #   [String] -> Promise
 module.exports = (paths, opts) ->
+  println ''
+
   glob-all.sync paths
   |> map lint-file _, opts
   |> Promise.all

@@ -53,11 +53,12 @@ print-error = (e) ->
 
 optionator = (require \optionator) do
   prepend:  '''
+
             lint livescript source files
 
             Usage: ls-lint [options]... [files]...
             '''
-  append: "Version #{my-package.version}"
+  append: "Version #{my-package.version}\n"
   options:
     * heading: \Options
     * option: \help

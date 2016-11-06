@@ -10,5 +10,5 @@ require! {
 module.exports = (error) ->
   error
   |> (.toString!)
-  |> -> "\n  #{level-mark \fatal} #{it}"
+  |> -> "\n  #{level-mark \fatal} #{it}\n"
   |> printerrln
