@@ -11,9 +11,9 @@ require! {
 
 # Lints required files.
 #   [String] -> Promise
-module.exports = (paths) ->
+module.exports = (paths, opts) ->
   glob-all.sync paths
-  |> map lint-file
+  |> map lint-file _, opts
   |> Promise.all
   |> (.then flatten)
 
@@ -25,7 +25,10 @@ lint-file = (file, opts) ->
     if err
       reject err
     else
-      data
-      |> ls-lint.lint _, opts
-      |> report-lint-file file
-      |> resolve
+      try
+        data
+        |> ls-lint.lint _, opts
+        |> report-lint-file file
+        |> resolve
+      catch e
+        reject e

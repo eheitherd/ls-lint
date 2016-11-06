@@ -27,10 +27,11 @@ action = (options) ->
   | options.version   => print-version!
   | options.help      => print-help!
   | empty options._   => print-help 1
-  | otherwise         => lint options._
+  | otherwise         => lint options._, options.config
 
-lint = (files) ->
-  lint-files files
+lint = (files, config) ->
+  print files, config
+  lint-files files, config-file: config
   |> _ `bind-p` report-total
   |> _ `catch-p` -> fail-p report-error!
 
