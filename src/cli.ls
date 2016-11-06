@@ -4,9 +4,11 @@
 require! {
   'prelude-ls': {each, empty}
   '../package.json': my-package
+  './load-config'
   './lint-files'
   './reporters/report-total'
   './reporters/report-error'
+  './reporters/report-utils': {println}
   './lib/monad-p': {return-p, bind-p, catch-p, promisize}
 }
 
@@ -29,23 +31,24 @@ action = (options) ->
   | empty options._   => print-help 1
   | otherwise         => lint options._, options.config
 
-lint = (files, config) ->
-  print files, config
-  lint-files files, config-file: config
+lint = (files, config-file) ->
+  get-config config-file
+  |> _ `bind-p` (config) -> lint-files files, {config}
   |> _ `bind-p` report-total
-  |> _ `catch-p` -> fail-p report-error!
+  |> _ `catch-p` print-error
+
+get-config = promisize (done, _, file) -> done load-config file
 
 print-version = ->
-  print "#{my-package.version}"
+  println "#{my-package.version}"
   return-p!
 
 print-help = ->
-  print optionator.generate-help!
+  println optionator.generate-help!
   return-p!
 
 print-error = (e) ->
-  print e.message
-  print optionator.generate-help!
+  report-error e
   fail-p!
 
 optionator = (require \optionator) do
@@ -72,5 +75,3 @@ optionator = (require \optionator) do
     * option: \print-config
       type: \Boolean
       description: 'print the configuration'
-
-print = console~log

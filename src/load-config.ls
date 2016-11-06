@@ -10,12 +10,10 @@ require! {
 # Loads lint configuration from lson files,
 #   which is required, is in current directory, or is in this module.
 #   {a: b} -> {c: d}
-module.exports = (opts) ->
-  config-file = opts.config-file ? opts.rule-file
+module.exports = (config-file) ->
   request-config = if config-file then load-lson config-file else {}
-  opts-config = opts.config ? {}
 
-  {} <<< default-config <<< current-config <<< request-config <<< opts-config
+  {} <<< current-config <<< request-config
 
 # Loads optional lson file,
 # which returns empty object when required file can't be read.
@@ -27,12 +25,4 @@ load-optional-lson = (lson-file) ->
     return {}
   load-lson lson-file
 
-config-file = \ls-lint.lson
-
-default-config =
-  module.filename
-  |> path.dirname
-  |> path.resolve _, "../#{config-file}"
-  |> load-lson
-
-current-config = load-optional-lson "./#{config-file}"
+current-config = load-optional-lson "./ls-lint.lson"

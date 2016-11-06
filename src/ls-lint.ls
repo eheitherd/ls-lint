@@ -6,7 +6,7 @@ require! {
   'prelude-ls': {
     Obj, Str, empty, map, compact, flatten, reject, split,
     last, initial, sort-with}
-  './load-config'
+  './load-default-config'
   './load-rule-modules'
 }
 
@@ -21,7 +21,8 @@ export lint = (src, opts = {}) ->
       if result.1 then [result.1, +result.2] else [result.3, void]
     return [{rule: \compile, level: \fatal, line, message}]
 
-  lint-target <<< {src, lines: (restruct-src src), config: (load-config opts)}
+  config = {} <<< default-config <<< opts.config
+  lint-target <<< {src, lines: (restruct-src src), config}
 
   rule-modules
   |> map (<| lint-target)
@@ -36,6 +37,8 @@ export lint = (src, opts = {}) ->
 rule-modules =
   <[ ./rules/*.js ]>
   |> load-rule-modules
+
+default-config = load-default-config!
 
 # Returns list of {line(Number), src, eol}
 #   String -> [{a: b}]

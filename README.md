@@ -22,38 +22,37 @@ Option              | Description
 -V, --version       | output the version number
 -c, --config <file> | use specified configuration file
 
+#### Priority order of configuration
+
+1. specified configuration with `--config`
+1. `ls-lint.lson` in the current directory
+1. default configuration
+
 ### API
 
 ```livescript
 require! 'ls-lint'
 
-ls-lint.lint '(x, y) -> x + y', eol-last: \ignore
+ls-lint.lint '(x, y) -> x + y'
 ```
 
-#### ls-lint.lint source, [config]
+#### ls-lint.lint source, [options]
 
 Returns a list of errors, warnings.
 
-##### config
+##### options
 
-This overwrites default configuration.
+* `config`
 
-```livescript
-max-file-lines:
-  level: \warning
-  value: 200
-eol-last: \ignore
-```
+  Overwrites default configuration.
 
-See: ls-lint.lson
-
-* `config-file` [DEPRECATED]
-
-  Path for your configuration file.
-
-* `config`  [DEPRECATED]
-
-  This overwrites configuration of your configuration file or default.
+  ```livescript
+  config:
+    max-file-lines:
+      level: \warning
+      value: 200
+      eol-last: \ignore
+  ```
 
 [npm-img]: https://badge.fury.io/js/ls-lint.svg
 [npm-url]: https://badge.fury.io/js/ls-lint
