@@ -11,39 +11,49 @@ ls-lint is a linter for [LiveScript](http://livescript.net/).
 ### CLI
 
 ```bash
-ls-lint file [...]
+ ls-lint [options]... [file]...
 ```
+
+#### options
+
+Option              | Description
+---                 | ---
+-h, --help          | output usage information
+-V, --version       | output the version number
+-c, --config <file> | use specified configuration file
 
 ### API
 
-#### ls-lint.lint source, [options]
+```livescript
+require! 'ls-lint'
+
+ls-lint.lint '(x, y) -> x + y', eol-last: \ignore
+```
+
+#### ls-lint.lint source, [config]
 
 Returns a list of errors, warnings.
 
-##### options
+##### config
 
-* `config-file`
+This overwrites default configuration.
+
+```livescript
+max-file-lines:
+  level: \warning
+  value: 200
+eol-last: \ignore
+```
+
+See: ls-lint.lson
+
+* `config-file` [DEPRECATED]
 
   Path for your configuration file.
 
-* `config`
+* `config`  [DEPRECATED]
 
   This overwrites configuration of your configuration file or default.
-
-* `rule-file` [DEPRECATED]
-
-  Path for your rule file.
-
-* `rules` [DEPRECATED]
-
-  This overwrites rules of your rule file or defaults.
-
-```livescript
-options =
-  config-file: \./my-config.lson
-  config:
-    eol-last: \ignore
-```
 
 [npm-img]: https://badge.fury.io/js/ls-lint.svg
 [npm-url]: https://badge.fury.io/js/ls-lint
