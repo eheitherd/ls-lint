@@ -14,7 +14,7 @@ reform-path = ->
 
 module.exports = (...) ->
   describe 'lint me' ->
-    glob-all.sync './**/*.ls?(on)'
+    glob-all.sync <[./*.ls?(on) ./**/src/**/*.ls]>
     |> each (file) ->
       it (reform-path file), ->
         fs.read-file-sync file, encoding: \utf8

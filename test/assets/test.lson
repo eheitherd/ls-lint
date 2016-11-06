@@ -1,0 +1,3 @@
+naming-conventions:
+  value:
+    constant: \SNAKE_CASE

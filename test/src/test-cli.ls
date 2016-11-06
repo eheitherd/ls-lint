@@ -31,3 +31,8 @@ module.exports = (...) ->
       error, stdout, stderr <- exec-file \node, args, timeout: 3000
       expect stdout .to.have.string ' in 2 files'
       done!
+    it '-c' (done) ->
+      args = <[ ./bin/ls-lint -c test/assets/test.lson test/assets/test.ls]>
+      error, stdout, stderr <- exec-file \node, args, timeout: 3000
+      expect stdout .to.have.string '0 fatals, 0 errors, 0 warnings in 1 file'
+      done!
