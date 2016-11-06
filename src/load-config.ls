@@ -5,6 +5,7 @@ require! {
   fs
   path
   './load-lson'
+  './util/util-obj': {deep-merge}
 }
 
 # Loads lint configuration from lson files,
@@ -13,7 +14,7 @@ require! {
 module.exports = (config-file) ->
   request-config = if config-file then load-lson config-file else {}
 
-  {} <<< current-config <<< request-config
+  deep-merge current-config, request-config
 
 # Loads optional lson file,
 # which returns empty object when required file can't be read.

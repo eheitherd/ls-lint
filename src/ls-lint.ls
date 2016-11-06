@@ -8,21 +8,23 @@ require! {
     last, initial, sort-with}
   './load-default-config'
   './load-rule-modules'
+  './util/util-obj': {deep-merge}
 }
 
 # Lints LiveScript source.
 #    String -> ({a: b}) -> [c]
 export lint = (src, opts = {}) ->
   try
-    lint-target = Obj.map (<| src), {tokens: lsc.lex, lsc.ast}
+    tokens = lsc.lex src
+    ast = lsc.ast src
   catch e
     result = /(.*) on line (\d+)|(.*)/.exec e.message
     [message, line] =
       if result.1 then [result.1, +result.2] else [result.3, void]
     return [{rule: \compile, level: \fatal, line, message}]
 
-  config = {} <<< default-config <<< opts.config
-  lint-target <<< {src, lines: (restruct-src src), config}
+  config = deep-merge default-config, opts.config
+  lint-target = {tokens, ast, src, config, lines: restruct-src src}
 
   rule-modules
   |> map (<| lint-target)
