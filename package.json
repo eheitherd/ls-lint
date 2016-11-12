@@ -46,7 +46,7 @@
   "scripts": {
     "build": "gulp build",
     "clean": "gulp clean",
-    "lint": "node ./bin/ls-lint './**/*.ls?(on)'",
+    "lint": "node ./bin/ls-lint \"./**/*.ls?(on)\"",
     "rebuild": "gulp rebuild",
     "test": "gulp test",
     "watch": "gulp watch"
