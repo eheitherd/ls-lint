@@ -4,11 +4,11 @@ require! {
   'glob-all'
   chai: {expect}
   '../../lib/ls-lint': {lint}
-  '../../lib/lib/monad-p': {monad-p: p, promisize-api}
+  '../../lib/utils/monad-p': {monad-p: p, promisize-api}
   'prelude-ls': {each, count-by}
 }
 
-reform-path = (.replace /\\/g \/ ) . (path.relative './', _)
+reform-path = (.replace /\\/g \/) . (path.relative './', _)
 read-file = promisize-api fs.read-file _, \utf8, _
 is-error = -> ((.fatal) or (.error)) it
 lint-check = (~= true) . is-error . (count-by (.level)) . lint

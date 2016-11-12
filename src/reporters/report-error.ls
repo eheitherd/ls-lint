@@ -9,6 +9,6 @@ require! {
 #   {a: b} -> undefined
 module.exports = (error) ->
   error
-  |> (.toString!)
+  |> (.to-string!)
   |> -> "\n  #{level-mark \fatal} #{it}\n"
   |> printerrln

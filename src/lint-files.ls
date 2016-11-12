@@ -4,34 +4,19 @@
 require! {
   'glob-all'
   fs
-  'prelude-ls': {map, flatten, empty}
+  './utils/monad-p': {monad-p:p, promisize-api}
   './ls-lint'
-  './reporters/report-utils': {println}
-  './reporters/report-lint-file'
 }
 
 # Lints required files.
-#   [String] -> Promise
+#   [String] -> a -> Promise
 module.exports = (paths, opts) ->
-  println ''
+  read-file = promisize-api fs~read-file _, \utf8, _
+  ls-lint-p = p.return . ls-lint.lint _, opts
+  lint-file = read-file `p.'>=>'` ls-lint-p
+  lint-result = (f) -> (lint-file f) `p.'>>='` -> p.return {file:f, results:it}
 
-  glob-all.sync paths
-  |> map lint-file _, opts
-  |> Promise.all
-  |> (.then flatten)
+  async-glob = promisize-api glob-all
+  lint-files = p.map-m lint-result
 
-# Lints single requied file.
-#   String -> a -> Promise
-lint-file = (file, opts) ->
-  new Promise (resolve, reject) ->
-    err, data <- fs.read-file file, encoding: \utf8
-    if err
-      reject err
-    else
-      try
-        data
-        |> ls-lint.lint _, opts
-        |> report-lint-file file
-        |> resolve
-      catch e
-        reject e
+  paths |> (async-glob `p.'>=>'` lint-files)

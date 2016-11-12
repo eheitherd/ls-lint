@@ -7,10 +7,11 @@ require! {
   './load-config'
   './default-config': {read-default-config}
   './lint-files'
+  './reporters/report-lint-file'
   './reporters/report-total'
   './reporters/report-error'
   './reporters/report-utils': {print, println}
-  './lib/monad-p': {return-p, bind-p, catch-p, promisize}
+  './utils/monad-p': {return-p, bind-p, catch-p, promisize}
 }
 
 # Implements command line interface.
@@ -37,6 +38,12 @@ action = (options) ->
 lint = (files, config-file) ->
   get-config config-file
   |> _ `bind-p` (config) -> lint-files files, {config}
+  |> _ `bind-p` ->
+    println ''
+    return-p it
+  |> _ `bind-p` ->
+    map (-> report-lint-file it.file, it.results), it
+    return-p it
   |> _ `bind-p` report-total
 
 get-config = promisize (done, _, file) -> done load-config file

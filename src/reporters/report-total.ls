@@ -2,46 +2,41 @@
 # Reportts total of lint errors.
 
 require! {
-  'prelude-ls': {map, fold, lists-to-obj, keys, join, sum}
-  './report-utils': {level-mark, level-value, println}
+  'prelude-ls': {map, fold, filter, join}
+  './report-utils': {level-mark, worst-level, println}
 }
 
 # Reports the totals of errors, warnings to stdout.
-#   [{a: Int}] -> undefined
-module.exports = (list-of-totals) ->
-  file-num = list-of-totals.length
-  file-num-str = "#{file-num} file#{if file-num isnt 1 then 's' else ''}"
+#   [a] -> ())
+module.exports = (results) ->
+  pluraize = -> if it isnt 1 then 's' else ''
 
-  list-of-totals
-  |> sum-up <[ fatal error warning ]>
-  |> ->
-    result-mark-str = worst-mark it
-    result-str =
-      it
-      |> keys
-      |> map (level) ->
-        num = it[level]
-        "#{num} #{level}#{if num isnt 1 then 's' else ''}"
-      |> join ', '
-    "\n  #{result-mark-str} #{result-str} in #{file-num-str}.\n"
-  |> println
+  file-num = results.length
+  file-num-str = "#{file-num} file#{pluraize file-num}"
 
-sum-up = (targets, results) -->
+  sums = sum-up <[ fatal error warning ]> results
+
+  result-mark-str = worst-mark sums
+  result-str =
+    sums
+    |> map -> "#{it.1} #{it.0}#{pluraize it.1}"
+    |> join ', '
+
+  println "\n  #{result-mark-str} #{result-str} in #{file-num-str}.\n"
+
+sum-up = (targets, results = []) -->
+  count-up = (target) ->
+    (count, {level}) -> count + if level is target then 1 else 0
+  sum-file = (target) ->
+    (count, {results = []}) -> fold (count-up target), count, results
+  sum-all = (target) -> fold (sum-file target), 0
+
   targets
-  |> map (target) ->
-    results
-    |> map (.[target] ? 0)
-    |> sum
-  |> lists-to-obj targets
+  |> map (target) -> [target, (sum-all target) results]
 
 worst-mark = (result) ->
   result
-  |> keys
-  |> fold do
-    (worst, level) ->
-      if result[level] > 0 and (level-value level) > (level-value worst)
-        level
-      else
-        worst
-    'ok'
+  |> filter -> (it.1 > 0)
+  |> map (.0)
+  |> worst-level
   |> level-mark
