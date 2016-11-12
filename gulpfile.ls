@@ -16,20 +16,24 @@ require! {
 dir-lib = \lib
 dir-testlib = \test/lib
 products = [dir-lib, dir-testlib]
+src-files = \src/**/*.ls
+test-files = \test/src/**/*.ls
 
 gulp.task \test <[ build build-test ]> ->
   gulp.src "#{dir-testlib}/test.js"
     .pipe mocha reporter: \spec
 
+gulp.task \watch -> gulp.watch [src-files, test-files], <[ test ]>
+
 gulp.task \build ->
-  gulp.src \src/**/*.ls
+  gulp.src src-files
     .pipe newer dest: dir-lib, ext: \.js
     .pipe lsc!
     .pipe paths -> log-act \compile, it, dir-lib, \ls
     .pipe gulp.dest dir-lib
 
 gulp.task \build-test ->
-  gulp.src \test/src/**/*.ls
+  gulp.src test-files
     .pipe newer dest: dir-testlib, ext: \.js
     .pipe lsc!
     .pipe paths -> log-act \compile, it, dir-testlib, \ls

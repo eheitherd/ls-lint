@@ -45,6 +45,7 @@
     "build": "gulp build",
     "clean": "gulp clean",
     "lint": "node ./bin/ls-lint './**/*.ls?(on)'",
-    "test": "gulp test"
+    "test": "gulp test",
+    "watch": "gulp watch"
   }
 }
