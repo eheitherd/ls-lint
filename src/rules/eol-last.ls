@@ -15,5 +15,5 @@ module.exports = ({lines, config}) ->
 
   if level isnt \ignore
     last-line = last lines
-    if Str.empty last-line.src or not last-line.eol?
+    if last-line and (Str.empty last-line.src or not last-line.eol?)
       {rule, last-line.line, level, message}

@@ -54,7 +54,11 @@ restruct-src = ->
 # Does recursively.
 #    Int -> [a] -> [{b: c}]
 restruct-src-line = (line, [src, eol, ...cs]) -->
-  [{line, src, eol}] ++ if empty cs then [] else restruct-src-line line + 1, cs
+  if src?
+    [{line, src, eol}] ++
+      if empty cs then [] else restruct-src-line line + 1, cs
+  else
+    []
 
 trim-last = -> if Str.empty last it then initial it else it
 

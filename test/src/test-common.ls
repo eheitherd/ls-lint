@@ -47,3 +47,5 @@ module.exports = (...) ->
     it 'opts' ->
       opts = config: arrow-spacing: value: after: false
       expect(lint '(a) ->1\n' opts).to.eql []
+    it 'empty source' ->
+      expect(lint '').to.eql []
