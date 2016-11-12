@@ -4,6 +4,7 @@
 require! {
   path
   gulp
+  'gulp-plumber': plumber
   'gulp-util' : {log, colors}
   'gulp-newer': newer
   'gulp-livescript': lsc
@@ -23,11 +24,13 @@ gulp.task \test <[ build build-test ]> ->
   gulp.src "#{dir-testlib}/test.js"
     .pipe mocha reporter: \spec
 
-gulp.task \watch -> gulp.watch [src-files, test-files], <[ test ]>
+gulp.task \watch ->
+  gulp.watch [src-files, test-files], <[ test ]>
 
 gulp.task \build ->
   gulp.src src-files
     .pipe newer dest: dir-lib, ext: \.js
+    .pipe plumber
     .pipe lsc!
     .pipe paths -> log-act \compile, it, dir-lib, \ls
     .pipe gulp.dest dir-lib
@@ -35,6 +38,7 @@ gulp.task \build ->
 gulp.task \build-test ->
   gulp.src test-files
     .pipe newer dest: dir-testlib, ext: \.js
+    .pipe plumber
     .pipe lsc!
     .pipe paths -> log-act \compile, it, dir-testlib, \ls
     .pipe gulp.dest dir-testlib
