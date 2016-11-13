@@ -30,7 +30,7 @@ gulp.task \watch ->
 gulp.task \build ->
   gulp.src src-files
     .pipe newer dest: dir-lib, ext: \.js
-    .pipe plumber
+    .pipe plumber!
     .pipe lsc!
     .pipe paths -> log-act \compile, it, dir-lib, \ls
     .pipe gulp.dest dir-lib
@@ -38,7 +38,7 @@ gulp.task \build ->
 gulp.task \build-test ->
   gulp.src test-files
     .pipe newer dest: dir-testlib, ext: \.js
-    .pipe plumber
+    .pipe plumber!
     .pipe lsc!
     .pipe paths -> log-act \compile, it, dir-testlib, \ls
     .pipe gulp.dest dir-testlib
