@@ -4,7 +4,7 @@ require! {
   'glob-all'
   chai: {expect}
   '../../lib/ls-lint': {lint}
-  '../../lib/utils/monad-p': {monad-p: p, promisize-api}
+  '../../lib/lib/monad-p': {monad-p: p, promisize-api}
   'prelude-ls': {each, count-by}
 }
 
