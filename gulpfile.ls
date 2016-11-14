@@ -11,6 +11,7 @@ require! {
   'gulp-mocha': mocha
   del
   'vinyl-paths': paths
+  'run-sequence': sequence
   'prelude-ls': {is-type, split, join, slice}
 }
 
@@ -24,7 +25,7 @@ gulp.task \test <[ build build-test ]> ->
   gulp.src "#{dir-testlib}/test.js"
     .pipe mocha reporter: \spec
 
-gulp.task \watch ->
+gulp.task \watch <[ rebuild ]> ->
   gulp.watch [src-files, test-files], <[ test ]>
 
 gulp.task \build ->
@@ -46,6 +47,9 @@ gulp.task \build-test ->
 gulp.task \clean ->
   del products
     .then -> log-act \delete it
+
+gulp.task \rebuild ->
+  sequence \clean \test
 
 info = colors.green
 relpath = -> module.filename |> path.dirname |> path.relative _, it

@@ -19,6 +19,7 @@
     "gulp-newer": "^1.3.0",
     "gulp-plumber": "^1.1.0",
     "gulp-util": "^3.0.7",
+    "run-sequence": "^1.2.2",
     "vinyl-paths": "^2.1.0"
   },
   "engines": {
@@ -46,6 +47,7 @@
     "build": "gulp build",
     "clean": "gulp clean",
     "lint": "node ./bin/ls-lint './**/*.ls?(on)'",
+    "rebuild": "gulp rebuild",
     "test": "gulp test",
     "watch": "gulp watch"
   }
