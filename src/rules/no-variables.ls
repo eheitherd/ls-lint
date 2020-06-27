@@ -22,4 +22,6 @@ module.exports = ({src, config}) ->
       if result = e.message is /.*constant.* on line (\d+)/
         {rule, level, line: +result.1, message}
       else
-        throw e
+        # https://github.com/gkz/LiveScript/issues/809
+        if not /constant "that"/ is e.toString!
+          throw e
