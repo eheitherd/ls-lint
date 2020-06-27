@@ -15,11 +15,11 @@ module.exports = (file, results = []) -->
   |> -> println "    #{level-mark it} #{file}"
 
   results
-  |> each -> println "      #{format-lint-result it}"
+  |> each -> println "      #{format-lint-result file,it}"
 
-format-lint-result = ->
+format-lint-result = (file,it)->
   place =
     | not it.line?    => ''
-    | not it.column?  => " (#{it.line})"
-    | _               => " (#{it.line}:#{it.column})"
+    | not it.column?  => " (#{file}:#{it.line})"
+    | _               => " (#{file}:#{it.line}:#{it.column})"
   "#{level-mark it.level} #{it.message}#{place}"

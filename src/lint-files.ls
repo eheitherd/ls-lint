@@ -2,7 +2,7 @@
 # Lints required files.
 
 require! {
-  'glob-all'
+  'fast-glob'
   fs
   './utils/monad-p': {monad-p:p, promisize-api}
   './ls-lint'
@@ -16,7 +16,7 @@ module.exports = (paths, opts) ->
   lint-file = read-file `p.'>=>'` ls-lint-p
   lint-result = (f) -> (lint-file f) `p.'>>='` -> p.return {file:f, results:it}
 
-  async-glob = promisize-api glob-all
+  async-glob = fast-glob
   lint-files = p.map-m lint-result
 
   paths |> (async-glob `p.'>=>'` lint-files)

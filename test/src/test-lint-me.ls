@@ -1,7 +1,7 @@
 require! {
   fs
   path
-  'glob-all'
+  'fast-glob'
   chai: {expect}
   '../../lib/ls-lint': {lint}
   '../../lib/utils/monad-p': {monad-p: p, promisize-api}
@@ -15,7 +15,7 @@ lint-check = (~= true) . is-error . (count-by (.level)) . lint
 
 module.exports = (...) ->
   describe 'lint me' ->
-    glob-all.sync <[./*.ls?(on) ./**/src/**/*.ls]>
+    fast-glob.sync <[./*.ls?(on) ./**/src/**/*.ls]>
     |> each (file) ->
       it (reform-path file), (done) !->
         (read-file file) `p.'>>='` ->
