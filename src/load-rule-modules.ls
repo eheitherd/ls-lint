@@ -4,7 +4,7 @@
 require! {
   'prelude-ls': {map}
   path
-  'glob-all'
+  'fast-glob'
 }
 
 # Returns required rule modules.
@@ -12,7 +12,7 @@ require! {
 module.exports = (rule-module-paths) ->
   rule-module-paths
   |> map resolve-path
-  |> glob-all.sync
+  |> fast-glob.sync
   |> map relative-path
   |> map (-> "./#{it}")
   |> map -> require it
